@@ -1,20 +1,21 @@
-import Home from "../Routes/Home";
-import Detail from "../Routes/Detail";
-import MyContents from "../Routes/MyContents";
+import Home from "Routes/Home";
+import Detail from "Routes/Detail";
+import MyContents from "Routes/MyContents";
+import path from "constant/path";
 
 const route = [
   {
-    path: "/",
+    path: path.home,
     page: Home,
     exact: true,
   },
   {
-    path: "/detail/:id",
+    path: `${path.detail}/:id`,
     page: Detail,
     exact: true,
   },
   {
-    path: "/myContents",
+    path: path.myContents,
     page: MyContents,
     exact: true,
   },
