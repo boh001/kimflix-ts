@@ -2,7 +2,7 @@ import React from "react";
 import InitRouter from "./InitRouter";
 import { GlobalStyle } from "./GlobalStyle";
 
-export default () => {
+const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
@@ -10,3 +10,4 @@ export default () => {
     </>
   );
 };
+export default App;

@@ -5,20 +5,19 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Home from "../Routes/Home";
+import route from "./route";
+import Header from "./Header/Header";
 
-export default () => (
+const InitRouter: React.FC = () => (
   <Router basename={window.location.pathname || ""}>
+    <Header />
+    {/* <MainFrame /> */}
     <Switch>
-      <Route exact path="/" component={Home} />
+      {route.map(({ path, page, exact }, i) => (
+        <Route exact={exact} path={path} component={page} />
+      ))}
+      <Redirect path="*" to="/" />
     </Switch>
-    {/* <Header />
-    <MainFrame>
-    <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/detail/:id" component={Detail} />
-        <Route path="/myContents" component={MyContents} />
-    </Switch>
-    </MainFrame> */}
   </Router>
 );
+export default InitRouter;
