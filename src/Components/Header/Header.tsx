@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "modules/reducers/root";
-import { wheelScroll, clickSearch } from "./Header.fns";
 import {
   HeaderFrame,
   HeaderLogo,
@@ -14,10 +13,26 @@ import {
 } from "./Header.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { onScroll, onSearch } from "modules/reducers/header";
+import { useCallDispatch } from "hooks/ucb";
+import { useDidmount } from "hooks/ue";
 
 const Header: React.FC = () => {
   const { scroll, search } = useSelector((state: RootState) => state.header);
+  const dispatch = useDispatch();
+
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useDidmount(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY !== 0) {
+        dispatch(onScroll(true));
+      } else {
+        dispatch(onScroll(false));
+      }
+    });
+    return window.removeEventListener("scroll", () => console.log("remove"));
+  });
   return (
     <HeaderFrame scroll={scroll}>
       <HeaderLinks>
@@ -27,7 +42,10 @@ const Header: React.FC = () => {
       </HeaderLinks>
       <HeaderSub>
         <HeaderSearch>
-          <HeaderIcon onClick={clickSearch} ref={inputRef}>
+          <HeaderIcon
+            onClick={useCallDispatch(onSearch(!search))}
+            ref={inputRef}
+          >
             <FontAwesomeIcon icon={faSearch} />
           </HeaderIcon>
           <HeaderSearchBar search={search} />

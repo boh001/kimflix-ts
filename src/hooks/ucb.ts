@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 
-export default (fns: Function, e?: any, deps?: any) =>
-  useCallback((e) => fns(e), [deps]);
+export const useCallDispatch = (type: any) => {
+  const dispatch = useDispatch();
+  console.log(type);
+
+  return useCallback(() => dispatch(type), [type]);
+};

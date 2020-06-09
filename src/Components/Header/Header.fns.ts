@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux";
 import { onScroll, onSearch } from "modules/reducers/header";
-import ucb from "hooks/ucb";
+import { useCallback } from "react";
 
-const dispatch = useDispatch();
-
-export const wheelScroll = ucb(() => dispatch(onScroll()));
-export const clickSearch = ucb(() => dispatch(onSearch()));
+// export const useWheelScroll = () => {
+//   const dispatch = useDispatch();
+//   return useCallback(() => dispatch(onScroll()), []);
+// };
+// export const useClickSearch = () => {
+//   const dispatch = useDispatch();
+//   return useCallback(() => dispatch(onSearch()), []);
+// };
