@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 type Option = {
-  baseUrl: string;
   params: {
     api_key: any;
     language: string;
@@ -11,14 +10,19 @@ type Option = {
 };
 
 const option: Option = {
-  baseUrl: "https://api.themoviedb.org/3/movie/",
   params: {
     api_key: process.env.REACT_APP_API_KEY,
     language: "ko-KR",
   },
 };
 
-const api = () => axios.create(option);
+const api = () =>
+  axios.create({ baseURL: "https://api.themoviedb.org/3/movie/" });
 
-export const fetchData = (id: number | null, loc: string) =>
-  api().get(`${id}/${loc}`);
+export const fetchData = (loc: string, id?: number) => {
+  if (id) {
+    return api().get(`${id}/${loc}`, option);
+  } else {
+    return api().get(`${loc}`, option);
+  }
+};

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { color, center } from "Components/variable";
-import test from "Video/test.mp4";
+// import test from "Video/test.mp4";
 type Sound = {
   sound: boolean;
 };
@@ -28,7 +28,7 @@ export const Frame = styled.div`
   }
 `;
 export const Content = styled.video.attrs((props: Sound) => ({
-  src: test,
+  src: "test",
   type: "video/mp4",
   muted: props.sound ? false : "muted",
 }))`

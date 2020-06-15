@@ -1,12 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import LazyLoad from "react-lazyload";
 import Loading from "Components/Loading/Loading";
 import TodayM from "Components/TodayM/TodayM";
-import { RootState } from "modules/reducers/root";
+import { Main } from "modules/reducers/data";
+type Props = {
+  loading: Boolean;
+  nowPlaying: Main[];
+  upcoming: Main[];
+  popular: Main[];
+};
 
-export default () => {
-  const { loading } = useSelector((state: RootState) => state.loading);
+const HomePresenter: React.FC<Props> = ({
+  loading,
+  nowPlaying,
+  upcoming,
+  popular,
+}) => {
   return (
     <>
       {loading ? (
@@ -19,3 +28,4 @@ export default () => {
     </>
   );
 };
+export default HomePresenter;

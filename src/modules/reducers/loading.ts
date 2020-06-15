@@ -1,21 +1,20 @@
-type LoadingAction = ReturnType<typeof loading>;
+type LoadingAction = ReturnType<typeof onLoad>;
 type LoadingState = {
   loading: boolean;
 };
 
-const LOADING = "LOADING" as const;
+const ONLOAD = "ONLOAD" as const;
 
-const loading = (payload: boolean) => ({ type: LOADING, payload });
+export const onLoad = (payload: boolean) => ({ type: ONLOAD, payload });
 
-const InitState: LoadingState = {
+const initState: LoadingState = {
   loading: true,
 };
-export {};
 
-export default (state: LoadingState = InitState, action: LoadingAction) => {
+export default (state: LoadingState = initState, action: LoadingAction) => {
   const { payload } = action;
   switch (action.type) {
-    case LOADING:
+    case ONLOAD:
       return { loading: payload };
     default:
       console.log("loading error");
