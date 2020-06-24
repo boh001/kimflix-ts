@@ -1,7 +1,7 @@
 import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 
-type DataAction =
+type MainDataAction =
   | ReturnType<typeof onNowPlaying>
   | ReturnType<typeof onUpcoming>
   | ReturnType<typeof onPopular>;
@@ -23,7 +23,7 @@ export type Main = {
   release_date: string;
 };
 
-type DataState = {
+type MainDataState = {
   nowPlaying: Main[];
   upcoming: Main[];
   popular: Main[];
@@ -42,23 +42,23 @@ export const onUpcoming = createAction(
 );
 export const onPopular = createAction(ONPOPULAR, (payload: Main[]) => payload);
 
-const initialState: DataState = {
+const initialState: MainDataState = {
   nowPlaying: [],
   upcoming: [],
   popular: [],
 };
-export default handleActions<DataState, any>(
+export default handleActions<MainDataState, any>(
   {
-    [ONNOWPLAYING]: (state, { payload }: DataAction) =>
+    [ONNOWPLAYING]: (state, { payload }: MainDataAction) =>
       produce(state, (draft) => {
         draft.nowPlaying = payload;
       }),
-    [ONUPCOMING]: (state, { payload }: DataAction) =>
+    [ONUPCOMING]: (state, { payload }: MainDataAction) =>
       produce(state, (draft) => {
         draft.upcoming = payload;
       }),
 
-    [ONPOPULAR]: (state, { payload }: DataAction) =>
+    [ONPOPULAR]: (state, { payload }: MainDataAction) =>
       produce(state, (draft) => {
         draft.popular = payload;
       }),
