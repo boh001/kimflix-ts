@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "modules/reducers/root";
 import { useDidmount } from "hooks/ue";
 import { fetchData } from "api";
-import { onData } from "modules/reducers/data";
+import { onNowPlaying, onUpcoming, onPopular } from "modules/reducers/mainData";
 import { onLoad } from "modules/reducers/loading";
 
 const HomeContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const {
-    main: { nowPlaying, upcoming, latest, popular },
-  } = useSelector((state: RootState) => state.data);
+  const { nowPlaying, upcoming, popular } = useSelector(
+    (state: RootState) => state.mainData
+  );
   const { loading } = useSelector((state: RootState) => state.loading);
 
   useDidmount(() => {
@@ -20,21 +20,22 @@ const HomeContainer: React.FC = () => {
         const {
           data: { results: nowPlaying },
         } = await fetchData("now_playing");
+        dispatch(onNowPlaying(nowPlaying));
+
         const {
           data: { results: upcoming },
         } = await fetchData("upcoming");
+        dispatch(onUpcoming(upcoming));
+
         const {
           data: { results: popular },
         } = await fetchData("popular");
-        const data = {
-          nowPlaying,
-          upcoming,
-          popular,
-        };
-        dispatch(onData(data));
+        dispatch(onPopular(popular));
+
         dispatch(onLoad(false));
       } catch (error) {
         console.log(error);
+        console.log("data error");
       }
       return () => dispatch(onLoad(true));
     })();

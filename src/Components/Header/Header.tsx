@@ -17,7 +17,7 @@ import { onScroll, onSearch } from "modules/reducers/header";
 import { useCallDispatch } from "hooks/ucb";
 import { useDidmount } from "hooks/ue";
 
-const Header: React.FC = () => {
+export default () => {
   const { scroll, search } = useSelector((state: RootState) => state.header);
   const dispatch = useDispatch();
 
@@ -54,4 +54,3 @@ const Header: React.FC = () => {
     </HeaderFrame>
   );
 };
-export default Header;

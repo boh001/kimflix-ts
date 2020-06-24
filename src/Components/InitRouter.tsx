@@ -14,8 +14,8 @@ const InitRouter: React.FC = () => (
     <Header />
     <Layout>
       <Switch>
-        {route.map(({ path, page, exact }, i) => (
-          <Route exact={exact} path={path} component={page} />
+        {route.map(({ path, page, exact }, key) => (
+          <Route key={key} exact={exact} path={path} component={page} />
         ))}
         <Redirect path="*" to="/" />
       </Switch>

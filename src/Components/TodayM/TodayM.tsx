@@ -1,6 +1,5 @@
 import React, { useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   Frame,
   Content,
@@ -28,7 +27,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
-const TodayM: React.FC = () => {
+export default () => {
   const dispatch = useDispatch();
   const { sound, end, play } = useSelector((state: RootState) => state.video);
 
@@ -103,4 +102,3 @@ const TodayM: React.FC = () => {
     </Frame>
   );
 };
-export default TodayM;
