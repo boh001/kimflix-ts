@@ -19,10 +19,6 @@ const option: Option = {
 const api = () =>
   axios.create({ baseURL: "https://api.themoviedb.org/3/movie/" });
 
-export const fetchData = (loc: string, id?: number) => {
-  if (id) {
-    return api().get(`${id}/${loc}`, option);
-  } else {
-    return api().get(`${loc}`, option);
-  }
+export const fetchData = (loc: string) => {
+  return api().get(`${loc}`, option);
 };

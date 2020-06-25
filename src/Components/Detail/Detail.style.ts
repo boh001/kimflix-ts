@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { color, center } from "Components/variable";
 
-type Url = {
-  url: string;
-};
-
 export const Frame = styled.div`
   width: 100%;
   ${center};
@@ -26,8 +22,8 @@ export const DetailFrame = styled.div`
   }
 `;
 
-export const DetailBg = styled.img.attrs((props: Url) => ({
-  src: `https://image.tmdb.org/t/p/w300${props.url}`,
+export const DetailBg = styled.img.attrs((props) => ({
+  src: `https://image.tmdb.org/t/p/w300${props.src}`,
 }))`
   object-fit: cover;
   width: 100%;
@@ -37,8 +33,8 @@ export const DetailBg = styled.img.attrs((props: Url) => ({
     display: none;
   }
 `;
-export const DetailImg = styled.img.attrs((props: Url) => ({
-  src: `https://image.tmdb.org/t/p/w300${props.url}`,
+export const DetailImg = styled.img.attrs((props) => ({
+  src: `https://image.tmdb.org/t/p/w300${props.src}`,
 }))`
   object-fit: cover;
   width: 300px;
@@ -178,8 +174,8 @@ export const DetailWrap = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-export const DetailCastImg = styled.img.attrs((props: Url) => ({
-  src: `https://image.tmdb.org/t/p/w300${props.url}`,
+export const DetailCastImg = styled.img.attrs((props) => ({
+  src: `https://image.tmdb.org/t/p/w300${props.src}`,
 }))`
   height: 200px;
   object-fit: cover;

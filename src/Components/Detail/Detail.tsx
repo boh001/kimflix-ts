@@ -71,11 +71,11 @@ export default () => {
         <Loading />
       ) : (
         <>
-          <DetailBg url={backdrop_path} />
+          <DetailBg src={backdrop_path} />
           <Frame>
             <DetailFrame>
               <DetailInfo>
-                <DetailImg url={poster_path} />
+                <DetailImg src={poster_path} />
                 <DetailMain>
                   <DetailTitle>{title}</DetailTitle>
                   <DetailDate>({release_date.slice(0, 4)})</DetailDate>
@@ -107,7 +107,7 @@ export default () => {
                     const { character, name, profile_path } = c;
                     return (
                       <DetailWrap key={key}>
-                        <DetailCastImg url={profile_path} />
+                        <DetailCastImg src={profile_path} />
                         <DetailName>{name}</DetailName>
                         <DetailName>{character}</DetailName>
                       </DetailWrap>
@@ -122,7 +122,7 @@ export default () => {
                     const { poster_path, vote_average, title } = s;
                     return (
                       <DetailWrap key={key}>
-                        <DetailCastImg url={poster_path} />
+                        <DetailCastImg src={poster_path} />
                         <DetailName>{title}</DetailName>
                         <DetailName>
                           <FontAwesomeIcon icon={faStar} />

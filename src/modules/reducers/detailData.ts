@@ -1,10 +1,11 @@
 import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
 
-type DetailDataAction =
-  | ReturnType<typeof onDetail>
-  | ReturnType<typeof onSimilar>
-  | ReturnType<typeof onCast>;
+type DetailDataAction = ReturnType<typeof onDetail>;
+
+type SimilarDataAction = ReturnType<typeof onSimilar>;
+
+type CastDataAction = ReturnType<typeof onCast>;
 
 export type Detail = {
   adult: boolean;
@@ -114,14 +115,16 @@ export default handleActions<DetailsDataState, any>(
         draft.detail = payload;
       }),
 
-    [ONSIMILAR]: (state, { payload }: DetailDataAction) =>
+    [ONSIMILAR]: (state, { payload }: SimilarDataAction) =>
       produce(state, (draft) => {
-        draft.similar = payload;
+        console.log(payload);
+
+        draft.similar.concat(payload);
       }),
 
-    [ONCAST]: (state, { payload }: DetailDataAction) =>
+    [ONCAST]: (state, { payload }: CastDataAction) =>
       produce(state, (draft) => {
-        draft.cast = payload;
+        draft.cast.concat(payload);
       }),
   },
   initialState
