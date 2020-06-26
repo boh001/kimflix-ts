@@ -10,7 +10,7 @@ import Header from "./Header/Header";
 import Layout from "./Layout/Layout";
 
 const InitRouter: React.FC = () => (
-  <Router basename={window.location.pathname || ""}>
+  <Router>
     <Header />
     <Layout>
       <Switch>

@@ -6,7 +6,7 @@ import { useDidmount } from "hooks/ue";
 import { fetchData } from "api";
 import { onNowPlaying, onUpcoming, onPopular } from "modules/reducers/mainData";
 import { onLoad } from "modules/reducers/loading";
-
+import url from "constant/url";
 const HomeContainer: React.FC = () => {
   const dispatch = useDispatch();
   const { nowPlaying, upcoming, popular } = useSelector(
@@ -19,17 +19,17 @@ const HomeContainer: React.FC = () => {
       try {
         const {
           data: { results: nowPlaying },
-        } = await fetchData("now_playing");
+        } = await fetchData(url.now_playing);
         dispatch(onNowPlaying(nowPlaying));
 
         const {
           data: { results: upcoming },
-        } = await fetchData("upcoming");
+        } = await fetchData(url.upcoming);
         dispatch(onUpcoming(upcoming));
 
         const {
           data: { results: popular },
-        } = await fetchData("popular");
+        } = await fetchData(url.popular);
         dispatch(onPopular(popular));
 
         dispatch(onLoad(false));
@@ -37,8 +37,10 @@ const HomeContainer: React.FC = () => {
         console.log(error);
         console.log("data error");
       }
-      return () => dispatch(onLoad(true));
     })();
+    return () => {
+      dispatch(onLoad(true));
+    };
   });
   return (
     <HomePresenter

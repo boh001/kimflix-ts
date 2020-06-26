@@ -7,9 +7,6 @@ type PosterType = {
 };
 
 const Poster: React.FC<PosterType> = ({ id, poster_path }) => {
-  console.log(poster_path);
-  console.log("poster");
-
   return (
     <>
       <PostrLink to={`/detail/${id}`}>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { center } from "Components/variable";
 import { Link } from "react-router-dom";
+// import * as test from "Video/test.mp4";
 export const PostrLink = styled(Link)`
   width: 100%;
   height: 100%;

@@ -3,5 +3,5 @@ import { useCallback } from "react";
 
 export const useCallDispatch = (type: any) => {
   const dispatch = useDispatch();
-  return useCallback(() => dispatch(type), [type]);
+  return useCallback(() => dispatch(type), []);
 };

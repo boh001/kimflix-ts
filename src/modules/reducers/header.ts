@@ -29,7 +29,6 @@ export default (state: HeaderState = initalState, action: HeaderAction) => {
     case SEARCH:
       return { ...state, search: payload };
     default:
-      console.log("header");
       return state;
   }
 };

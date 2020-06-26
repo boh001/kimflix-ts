@@ -17,7 +17,6 @@ export default (state: LoadingState = initState, action: LoadingAction) => {
     case ONLOAD:
       return { loading: payload };
     default:
-      console.log("loading error");
       return state;
   }
 };

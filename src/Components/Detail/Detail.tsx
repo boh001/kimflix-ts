@@ -33,6 +33,8 @@ import { RootState } from "modules/reducers/root";
 export default () => {
   const [update, setUpdate] = useState(false);
   const { loading } = useSelector((state: RootState) => state.loading);
+  console.log(loading);
+
   const { detail, similar, cast } = useSelector(
     (state: RootState) => state.detailData
   );

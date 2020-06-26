@@ -60,6 +60,7 @@ export type Cast = {
   order: number;
   profile_path: string;
 };
+
 type DetailsDataState = {
   detail: Detail;
   similar: Similar[];
@@ -117,14 +118,12 @@ export default handleActions<DetailsDataState, any>(
 
     [ONSIMILAR]: (state, { payload }: SimilarDataAction) =>
       produce(state, (draft) => {
-        console.log(payload);
-
-        draft.similar.concat(payload);
+        draft.similar = payload;
       }),
 
     [ONCAST]: (state, { payload }: CastDataAction) =>
       produce(state, (draft) => {
-        draft.cast.concat(payload);
+        draft.cast = payload;
       }),
   },
   initialState
